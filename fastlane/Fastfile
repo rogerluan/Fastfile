@@ -1,0 +1,5 @@
+# This file contains the fastlane.tools configuration
+# You can find the documentation at https://docs.fastlane.tools
+
+fastlane_require "git"
+require_relative "helpers/git_utils"
