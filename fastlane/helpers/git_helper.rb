@@ -49,7 +49,7 @@ class GitHelper
       "CHANGE_TITLE", # Jenkins
     ]
     # For Bitrise it will retrieve the title + description as per the docs.
-    # Retrieving the first line will assert that only the Title will be retrieved.
+    # Retrieving the first line will assert that only the title will be retrieved.
     title = first_env_var_value_or_nil(pull_request_title_env_var_candidates)
     return title.lines.first.chomp unless title.nil?
   end
