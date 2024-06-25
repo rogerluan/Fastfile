@@ -45,10 +45,13 @@ class GitHelper
   # The title of the PR, e.g. "[Tools] Integrate fastlane"
   def self.pr_title
     pull_request_title_env_var_candidates = [
-      "BITRISE_GIT_MESSAGE", # Bitrise - May be the commit message instead of the PR title
+      "BITRISE_GIT_MESSAGE", # Bitrise
       "CHANGE_TITLE", # Jenkins
     ]
-    first_env_var_value_or_nil(pull_request_title_env_var_candidates)
+    # For Bitrise it will retrieve the title + description as per the docs.
+    # Retrieving the first line will assert that only the title will be retrieved.
+    title = first_env_var_value_or_nil(pull_request_title_env_var_candidates)
+    return title.lines.first.chomp unless title.nil?
   end
 
   # The display name of the author of the PR e.g. "Roger Oba"
